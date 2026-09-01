@@ -1,0 +1,51 @@
+import { Ionicons } from '@expo/vector-icons';
+import { ScrollView, Text, View } from 'react-native';
+
+import { Cabecalho } from '@/componentes/Cabecalho';
+import { Rodape } from '@/componentes/Rodape';
+import { AZUL, estilos } from '@/estilos';
+
+const avisos = [
+  {
+    icone: 'car-outline',
+    titulo: 'Saiu para entrega',
+    texto: 'Seu pedido #12345 saiu para entrega.',
+    data: '11/04/2025 09:15',
+  },
+  {
+    icone: 'checkmark-circle-outline',
+    titulo: 'Pedido entregue',
+    texto: 'Seu pedido #12345 foi entregue com sucesso!',
+    data: '12/04/2025 16:30',
+  },
+];
+
+export default function Notificacoes() {
+  return (
+    <View style={estilos.tela}>
+      <View style={estilos.caixa}>
+        <Cabecalho />
+        <ScrollView style={estilos.flex} contentContainerStyle={estilos.conteudoCurto}>
+          <Text style={estilos.tituloPagina}>Notificações</Text>
+
+          {avisos.map((aviso) => (
+            <View key={aviso.titulo} style={estilos.card}>
+              <Ionicons name={aviso.icone} size={22} color={AZUL} />
+              <View style={estilos.cardTexto}>
+                <Text style={estilos.cardTitulo}>{aviso.titulo}</Text>
+                <Text style={estilos.cardLinha}>{aviso.texto}</Text>
+                <Text style={estilos.etapaData}>{aviso.data}</Text>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+
+        <Rodape
+          ativa={3}
+          titulo="Receba notificações"
+          texto="Acompanhe as atualizações do pedido."
+        />
+      </View>
+    </View>
+  );
+}
