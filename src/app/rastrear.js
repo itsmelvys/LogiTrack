@@ -27,7 +27,7 @@ export default function Rastrear() {
             accessibilityRole="button"
             accessibilityLabel="Buscar"
             style={estilos.botao}
-            onPress={() => router.push('/pedido')}>
+            onPress={() => router.push('/pedidos')}>
             <Text style={estilos.botaoTexto}>Buscar</Text>
           </Pressable>
         </View>

@@ -19,13 +19,27 @@ export const estilos = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 16,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    gap: 12,
   },
   topoTitulo: {
     color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  tagBoasVindas: {
+    marginLeft: 'auto',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    maxWidth: 140,
+  },
+  tagBoasVindasTexto: {
+    color: '#ffffff',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
   flex: {
     flex: 1,
@@ -120,6 +134,49 @@ export const estilos = StyleSheet.create({
     color: '#555555',
     marginTop: 2,
   },
+  statusPedido: {
+    marginTop: 8,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: AZUL,
+  },
+  statusCancelado: {
+    marginTop: 8,
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: '#c0392b',
+  },
+  tituloSecao: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#222222',
+    marginTop: 8,
+    marginBottom: 10,
+  },
+  barraFundo: {
+    height: 10,
+    backgroundColor: '#e5e5e5',
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 8,
+  },
+  barraPreenchida: {
+    height: 10,
+    backgroundColor: AZUL,
+    borderRadius: 8,
+  },
+  pontoAoVivo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginBottom: 8,
+  },
+  bolinhaViva: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#2E9B4F',
+  },
   rotulo: {
     fontSize: 14,
     color: '#222222',
@@ -136,6 +193,28 @@ export const estilos = StyleSheet.create({
   itemMenuTexto: {
     fontSize: 16,
     color: '#222222',
+  },
+  pastaLinha: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  fundoMenu: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    justifyContent: 'center',
+    padding: 28,
+  },
+  caixaMenuPedido: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  botaoMenuPedido: {
+    padding: 8,
+    marginLeft: 'auto',
   },
   logo: {
     alignItems: 'center',
@@ -188,6 +267,19 @@ export const estilos = StyleSheet.create({
   },
   botaoTexto: {
     color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  botaoSecundario: {
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: AZUL,
+    borderRadius: 8,
+    paddingVertical: 14,
+    alignItems: 'center',
+  },
+  botaoSecundarioTexto: {
+    color: AZUL,
     fontSize: 16,
     fontWeight: 'bold',
   },
