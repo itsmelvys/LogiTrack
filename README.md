@@ -1,6 +1,6 @@
 # LogiTrack
 
-O LogiTrack é um app de rastreamento de entregas. A ideia é simples: a pessoa entra na conta, vê o pedido mais recente e acompanha o que está acontecendo com a encomenda — se já foi recebida, se está em rota, se chegou ou se foi cancelada.
+O LogiTrack é um app de rastreamento de entregas. A ideia é simples: a pessoa entra na conta, vê o pedido mais recente e acompanha o que está acontecendo com a encomenda - se já foi recebida, se está em rota, se chegou ou se foi cancelada.
 
 O projeto foi feito com **Expo** (SDK 57) e **React Native**. As telas estão em JavaScript, na pasta `src/app`. Não tem servidor nem banco de dados: os pedidos, status e avisos são dados de exemplo, só para mostrar o fluxo na interface.
 
