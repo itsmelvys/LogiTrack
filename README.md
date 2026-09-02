@@ -1,56 +1,56 @@
-# Welcome to your Expo app 👋
+# LogiTrack
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+O LogiTrack é um app de rastreamento de entregas. A ideia é simples: a pessoa entra na conta, vê o pedido mais recente e acompanha o que está acontecendo com a encomenda — se já foi recebida, se está em rota, se chegou ou se foi cancelada.
 
-## Get started
+O projeto foi feito com **Expo** (SDK 57) e **React Native**. As telas estão em JavaScript, na pasta `src/app`. Não tem servidor nem banco de dados: os pedidos, status e avisos são dados de exemplo, só para mostrar o fluxo na interface.
 
-1. Install dependencies
+## O que dá para fazer no app
 
-   ```bash
-   npm install
-   ```
+Depois do login (nome, e-mail e senha), a primeira tela é o **Início**, com o pedido mais recente e o status atual.
 
-2. Start the app
+Dali dá para:
 
-   ```bash
-   npx expo start
-   ```
+- rastrear um pedido pelo número
+- ver o pedido **em rota**, com um acompanhamento que avança sozinho na tela (é simulado, não é GPS de verdade)
+- receber atualizações com o nome de quem entrou
+- abrir **Meus pedidos**, separado em pastas de concluídos e cancelados
+- cadastrar um pedido novo (só no visual; nada é gravado)
+- reportar um problema em um pedido, pelo menu de três pontinhos no card
 
-In the output, you'll find options to open the app in a
+O menu (ícone de três linhas no canto esquerdo do cabeçalho) leva para essas telas. Login, menu e início não têm botão de voltar; nas demais telas a seta aparece no topo.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Há também um protótipo antigo em HTML/CSS na pasta `html`, caso alguém queira abrir o login e o rastreio direto no navegador, sem o Expo.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Como rodar
 
-## Get a fresh project
-
-When you're ready, run:
+Precisa ter Node.js instalado.
 
 ```bash
-npm run reset-project
+npm install
+npm start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Com o Expo aberto, dá para testar no celular (Expo Go), no emulador Android, no simulador iOS ou no navegador (tecla `w`).
 
-### Other setup steps
+Outros atalhos:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+npm run android
+npm run ios
+npm run web
+```
 
-## Learn more
+## Estrutura (bem por cima)
 
-To learn more about developing your project with Expo, look at the following resources:
+- `src/app` — telas (login, início, rastrear, pedido, notificações, etc.)
+- `src/componentes` — cabeçalho, menu do pedido, rodapé
+- `src/dadosPedidos.js` — lista de pedidos de vitrine
+- `src/estilos.js` — cores e layout
+- `html` — versão estática das primeiras telas
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Licença
 
-## Join the community
+Este projeto não possui licença de código aberto.
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Todos os direitos são reservados à autora. Não é permitida a cópia,
+modificação, distribuição ou utilização deste código sem autorização prévia.
