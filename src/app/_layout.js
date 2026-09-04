@@ -6,8 +6,8 @@ import { UsuarioProvider } from '@/contexto';
 export default function Layout() {
   return (
     <UsuarioProvider>
-      <StatusBar style="dark" />
-      <Stack screenOptions={{ headerShown: false }} />
+      <StatusBar style="light" />
+      <Stack screenOptions={{ headerShown: false, contentStyle: { flex: 1 } }} />
     </UsuarioProvider>
   );
 }

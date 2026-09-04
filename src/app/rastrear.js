@@ -3,41 +3,35 @@ import { router } from 'expo-router';
 import { Pressable, Text, TextInput, View } from 'react-native';
 
 import { Cabecalho } from '@/componentes/Cabecalho';
-import { Rodape } from '@/componentes/Rodape';
-import { estilos } from '@/estilos';
+import { Tela } from '@/componentes/Fundo';
+import { ICONE, estilos } from '@/estilos';
 
 export default function Rastrear() {
   return (
-    <View style={estilos.tela}>
-      <View style={estilos.caixa}>
-        <Cabecalho />
-        <View style={estilos.conteudo}>
-          <Text style={estilos.tituloPagina}>Rastrear pedido</Text>
+    <Tela>
+      <Cabecalho />
+      <View style={estilos.conteudo}>
+        <Text style={estilos.tituloPagina}>Consultar pedido</Text>
 
-          <View style={estilos.campo}>
-            <Ionicons name="search-outline" size={18} color="#9a9a9a" style={estilos.icone} />
-            <TextInput
-              style={estilos.input}
-              placeholder="Digite o número do pedido"
-              placeholderTextColor="#9a9a9a"
-            />
-          </View>
-
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Buscar"
-            style={estilos.botao}
-            onPress={() => router.push('/pedidos')}>
-            <Text style={estilos.botaoTexto}>Buscar</Text>
-          </Pressable>
+        <View style={estilos.campo}>
+          <Ionicons name="search-outline" size={18} color={ICONE} style={estilos.icone} />
+          <TextInput
+            style={estilos.input}
+            placeholder="Número do pedido"
+            placeholderTextColor="#9a9a9a"
+          />
         </View>
 
-        <Rodape
-          ativa={1}
-          titulo="Consulte seu pedido"
-          texto="Digite o número do pedido para ver o status."
-        />
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Rastrear"
+          style={estilos.botao}
+          onPress={() => router.push('/pedidos')}>
+          <Text style={estilos.botaoTexto}>Rastrear</Text>
+        </Pressable>
+
+        <Text style={estilos.textoAjuda}>Exemplo: #LT2026-1048</Text>
       </View>
-    </View>
+    </Tela>
   );
 }

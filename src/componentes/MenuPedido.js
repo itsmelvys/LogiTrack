@@ -20,7 +20,7 @@ export function MenuPedido({ id, children, compact }) {
         accessibilityLabel="Opções do pedido"
         style={compact ? estilos.botaoMenuPedido : estilos.card}
         onPress={() => setAberto(true)}>
-        {compact ? <Ionicons name="ellipsis-vertical" size={20} color="#222222" /> : children}
+        {compact ? <Ionicons name="ellipsis-vertical" size={20} color="#ffffff" /> : children}
         {compact ? null : <Ionicons name="ellipsis-vertical" size={18} color="#888888" />}
       </Pressable>
 
@@ -41,7 +41,7 @@ export function MenuPedido({ id, children, compact }) {
               <Text style={estilos.itemMenuTexto}>Reportar um problema</Text>
             </Pressable>
             <Pressable accessibilityRole="button" style={estilos.itemMenu} onPress={() => setAberto(false)}>
-              <Text style={estilos.etapaData}>Fechar</Text>
+              <Text style={estilos.cardLinha}>Fechar</Text>
             </Pressable>
           </View>
         </Pressable>

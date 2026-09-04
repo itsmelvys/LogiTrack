@@ -2,9 +2,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { ScrollView, Text, View } from 'react-native';
 
 import { Cabecalho } from '@/componentes/Cabecalho';
+import { Tela } from '@/componentes/Fundo';
 import { Rodape } from '@/componentes/Rodape';
 import { useUsuario } from '@/contexto';
-import { AZUL, estilos } from '@/estilos';
+import { ICONE, estilos } from '@/estilos';
 
 const avisosFixos = [
   {
@@ -28,30 +29,28 @@ export default function Notificacoes() {
   const lista = [...avisos, ...avisosFixos];
 
   return (
-    <View style={estilos.tela}>
-      <View style={estilos.caixa}>
-        <Cabecalho />
-        <ScrollView style={estilos.flex} contentContainerStyle={estilos.conteudoCurto}>
-          <Text style={estilos.tituloPagina}>Notificações</Text>
+    <Tela>
+      <Cabecalho />
+      <ScrollView style={estilos.flex} contentContainerStyle={estilos.conteudoCurto}>
+        <Text style={estilos.tituloPagina}>Notificações</Text>
 
-          {lista.map((aviso) => (
-            <View key={aviso.id} style={estilos.card}>
-              <Ionicons name={aviso.icone || 'notifications-outline'} size={22} color={AZUL} />
-              <View style={estilos.cardTexto}>
-                <Text style={estilos.cardTitulo}>{aviso.titulo}</Text>
-                <Text style={estilos.cardLinha}>{aviso.texto}</Text>
-                <Text style={estilos.etapaData}>{aviso.data}</Text>
-              </View>
+        {lista.map((aviso) => (
+          <View key={aviso.id} style={estilos.card}>
+            <Ionicons name={aviso.icone || 'notifications-outline'} size={22} color={ICONE} />
+            <View style={estilos.cardTexto}>
+              <Text style={estilos.cardTitulo}>{aviso.titulo}</Text>
+              <Text style={estilos.cardLinha}>{aviso.texto}</Text>
+              <Text style={estilos.dataCard}>{aviso.data}</Text>
             </View>
-          ))}
-        </ScrollView>
+          </View>
+        ))}
+      </ScrollView>
 
-        <Rodape
-          ativa={3}
-          titulo="Receba notificações"
-          texto="Acompanhe as atualizações do pedido."
-        />
-      </View>
-    </View>
+      <Rodape
+        ativa={3}
+        titulo="Receba notificações"
+        texto="Acompanhe as atualizações do pedido."
+      />
+    </Tela>
   );
 }

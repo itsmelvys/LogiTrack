@@ -1,13 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import { Cabecalho } from '@/componentes/Cabecalho';
+import { Tela } from '@/componentes/Fundo';
 import { MenuPedido } from '@/componentes/MenuPedido';
 import { Rodape } from '@/componentes/Rodape';
 import { useUsuario } from '@/contexto';
-import { AZUL, estilos } from '@/estilos';
+import { AMARELO, ICONE, estilos } from '@/estilos';
 import { buscarPedido, etapasDoPedido, passosRastreio } from '@/dadosPedidos';
 
 function horaAgora() {
@@ -62,20 +63,21 @@ export default function Pedido() {
   }, [pedido.id, emRota, nome]);
 
   return (
-    <View style={estilos.tela}>
-      <View style={estilos.caixa}>
-        <Cabecalho />
-        <ScrollView style={estilos.flex} contentContainerStyle={estilos.conteudoCurto}>
-          <View style={estilos.voltarLinha}>
-            <Text style={estilos.tituloPedido}>{titulo}</Text>
-            <MenuPedido id={pedido.id} compact />
-          </View>
+    <Tela>
+      <Cabecalho />
+      <ScrollView style={estilos.flex} contentContainerStyle={estilos.conteudoCurto}>
+        <View style={estilos.voltarLinha}>
+          <Text style={estilos.tituloPedido}>{titulo}</Text>
+          <MenuPedido id={pedido.id} compact />
+        </View>
 
-          {etapas.map((etapa, i) => (
+        {etapas.map((etapa, i) => {
+          const atual = etapa.ok && (i === etapas.length - 1 || !etapas[i + 1].ok);
+          return (
             <View key={etapa.nome} style={estilos.etapa}>
               <View style={estilos.etapaEsquerda}>
-                <View style={[estilos.circulo, etapa.ok && estilos.circuloOk]}>
-                  {etapa.ok ? <Ionicons name="checkmark" size={14} color="#ffffff" /> : null}
+                <View style={[estilos.circulo, etapa.ok && estilos.circuloOk, atual && estilos.circuloAtual]}>
+                  {etapa.ok ? <Ionicons name="checkmark" size={14} color={AMARELO} /> : null}
                 </View>
                 {i < etapas.length - 1 ? (
                   <View style={[estilos.linhaEtapa, etapa.ok && etapas[i + 1].ok && estilos.linhaOk]} />
@@ -85,59 +87,57 @@ export default function Pedido() {
                 <Text style={estilos.etapaNome}>{etapa.nome}</Text>
               </View>
             </View>
-          ))}
+          );
+        })}
 
-          {emRota && passo ? (
-            <View>
-              <View style={estilos.pontoAoVivo}>
-                <View style={estilos.bolinhaViva} />
-                <Text style={estilos.cardTitulo}>Rastreamento ao vivo</Text>
-              </View>
-              <View style={estilos.barraFundo}>
-                <View style={[estilos.barraPreenchida, { width: `${passo.porcentagem}%` }]} />
-              </View>
-              <Text style={estilos.cardLinha}>Local: {passo.local}</Text>
-              <Text style={estilos.cardLinha}>Progresso: {passo.porcentagem}%</Text>
-              <Text style={estilos.statusPedido}>Chegada em cerca de {passo.minutos} min</Text>
+        {emRota && passo ? (
+          <View>
+            <View style={estilos.pontoAoVivo}>
+              <View style={estilos.bolinhaViva} />
+              <Text style={estilos.etapaNome}>Rastreamento ao vivo</Text>
             </View>
-          ) : null}
-
-          <View style={estilos.card}>
-            <Ionicons name="cube-outline" size={22} color={AZUL} />
-            <View style={estilos.cardTexto}>
-              <Text style={estilos.cardLinha}>Produto: {pedido.produto}</Text>
-              <Text style={estilos.cardLinha}>Quantidade: {pedido.quantidade}</Text>
-              <Text style={estilos.cardLinha}>Destino: {pedido.destino}</Text>
-              <Text style={estilos.cardLinha}>Endereço: {pedido.endereco}</Text>
-              <Text style={estilos.cardLinha}>Recebido: {pedido.recebido}</Text>
-              <Text style={estilos.cardLinha}>Previsão: {pedido.previsao}</Text>
-              <Text style={estilos.statusPedido}>{pedido.status}</Text>
+            <View style={estilos.barraFundo}>
+              <View style={[estilos.barraPreenchida, { width: `${passo.porcentagem}%` }]} />
             </View>
+            <Text style={estilos.rodapeTexto}>Local: {passo.local}</Text>
+            <Text style={estilos.rodapeTexto}>Progresso: {passo.porcentagem}%</Text>
+            <Text style={[estilos.etapaNome, { marginBottom: 12 }]}>
+              Chegada em cerca de {passo.minutos} min
+            </Text>
           </View>
+        ) : null}
 
-          {emRota ? (
-            <View>
-              <Text style={estilos.tituloSecao}>Atualizações</Text>
-              {atualizacoes.map((aviso) => (
-                <View key={aviso.id} style={estilos.card}>
-                  <Ionicons name="notifications-outline" size={22} color={AZUL} />
-                  <View style={estilos.cardTexto}>
-                    <Text style={estilos.cardTitulo}>{aviso.titulo}</Text>
-                    <Text style={estilos.cardLinha}>{aviso.texto}</Text>
-                    <Text style={estilos.etapaData}>{aviso.data}</Text>
-                  </View>
+        <View style={estilos.card}>
+          <Ionicons name="cube-outline" size={22} color={ICONE} />
+          <View style={estilos.cardTexto}>
+            <Text style={estilos.cardLinha}>Produto: {pedido.produto}</Text>
+            <Text style={estilos.cardLinha}>Quantidade: {pedido.quantidade}</Text>
+            <Text style={estilos.cardLinha}>Destino: {pedido.destino}</Text>
+            <Text style={estilos.cardLinha}>Endereço: {pedido.endereco}</Text>
+            <Text style={estilos.cardLinha}>Recebido: {pedido.recebido}</Text>
+            <Text style={estilos.cardLinha}>Previsão: {pedido.previsao}</Text>
+            <Text style={estilos.statusPedido}>{pedido.status}</Text>
+          </View>
+        </View>
+
+        {emRota ? (
+          <View>
+            <Text style={estilos.tituloSecao}>Atualizações</Text>
+            {atualizacoes.map((aviso) => (
+              <View key={aviso.id} style={estilos.card}>
+                <Ionicons name="notifications-outline" size={22} color={ICONE} />
+                <View style={estilos.cardTexto}>
+                  <Text style={estilos.cardTitulo}>{aviso.titulo}</Text>
+                  <Text style={estilos.cardLinha}>{aviso.texto}</Text>
+                  <Text style={estilos.dataCard}>{aviso.data}</Text>
                 </View>
-              ))}
-            </View>
-          ) : null}
-        </ScrollView>
+              </View>
+            ))}
+          </View>
+        ) : null}
+      </ScrollView>
 
-        <Rodape
-          ativa={2}
-          titulo="Em rota"
-          texto="Seu pedido está a caminho."
-        />
-      </View>
-    </View>
+      <Rodape ativa={2} titulo="Em rota" texto="Seu pedido está a caminho." />
+    </Tela>
   );
 }
